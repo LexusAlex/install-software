@@ -3,5 +3,5 @@
 
 function apt-install() {
     apt update
-    apt install vim -y
+    apt install vim unzip -y
 }
