@@ -26,7 +26,7 @@ source ${DIR}/vsftpd.sh
 
 #ftp
 #install-vsftpd
-replace_config
+#replace_config
 
 #delete
 #remove_php_7_4

@@ -3,3 +3,6 @@ docker run --name install-do -v ~/projects/install-do:/root/install-do -p 80:80 
 docker exec -it install-do /bin/bash
 docker start install-do
 docker stop install-do
+
+apt-get install vsftpd
+https://www.dmosk.ru/miniinstruktions.php?mini=vsftpd-ubuntu

@@ -27,7 +27,8 @@ function access-right() {
     if [ $? -eq 0 ] ; then
         echo "Пользователь существует"
     else
-        useradd -m -s /bin/bash -d /var/www -g www-data -p test developer
+        useradd ${USER_NAME} -m -s /bin/bash -d /var/www -g www-data
+        echo "${USER_NAME}:test" | chpasswd
         echo "Пользователь создан"
     fi
     # Проставляем права
