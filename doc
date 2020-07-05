@@ -6,3 +6,11 @@ docker stop install-do
 
 apt-get install vsftpd
 https://www.dmosk.ru/miniinstruktions.php?mini=vsftpd-ubuntu
+
+<FilesMatch \.php$>
+      # For Apache version 2.4.10 and above, use SetHandler to run PHP as a fastCGI process server
+      SetHandler "proxy:unix:/run/php/php7.1-fpm.sock|fcgi://localhost"
+    </FilesMatch>
+
+
+ln -s /etc/nginx/sites-available/php-fpm.7.0.loc.conf /etc/nginx/sites-enabled/

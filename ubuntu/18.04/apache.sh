@@ -22,7 +22,7 @@ function disabled-localhost() {
 # Права доступа на каталоги веб сервера
 function access-right() {
     # Создание пользователя который будет работать с системой
-    USER_NAME=developer
+    USER_NAME=$1
     cat /etc/passwd | grep ${USER_NAME} >/dev/null 2>&1
     if [ $? -eq 0 ] ; then
         echo "Пользователь существует"
@@ -38,9 +38,10 @@ function access-right() {
 
 }
 
+
 # Новый виртуальный хост
-function add-new-virtual-host() {
-    HOST_NAME=tested.loc
+function add-new-virtual-host-mod-php() {
+    HOST_NAME=$1
     FILENAME=/etc/apache2/sites-available/${HOST_NAME}.conf
 
     if [ -f ${FILENAME} ] ; then
@@ -73,11 +74,50 @@ function add-new-virtual-host() {
     fi
 }
 
+# Новый виртуальный хост php-fpm
+function add-new-virtual-host-php-fpm() {
+    HOST_NAME=$1
+    FILENAME=/etc/apache2/sites-available/${HOST_NAME}.conf
+    VERSION=$2
+
+    if [ -f ${FILENAME} ] ; then
+        echo "Фаил конфигурации ${FILENAME} существует"
+    else
+        touch ${FILENAME}
+    fi
+
+    if [ ! -f ${FILENAME} ] ; then
+        echo "Не могу записать, файла ${FILENAME} не существует"
+    else
+        # Проверка на пустоту
+        if [[ -s ${FILENAME} ]]; then
+            echo "Фаил конфигурации ${FILENAME} уже записан";
+        else
+            { \
+            echo '<VirtualHost *:80>'; \
+            echo "ServerName ${HOST_NAME}"; \
+            echo "ServerAdmin webmaster@localhost"; \
+            echo "DocumentRoot /var/www/${HOST_NAME}/"; \
+            echo "ErrorLog /var/log/apache2/error.${HOST_NAME}.log"; \
+            echo "CustomLog /var/log/apache2/access.${HOST_NAME}.log combined"; \
+            echo "<Directory /var/www/${HOST_NAME}/>"; \
+            echo "Options -Includes -Indexes -ExecCGI"; \
+            echo "AllowOverride All"; \
+            echo "</Directory>"; \
+            echo "<FilesMatch \.php$>"; \
+            echo "SetHandler 'proxy:unix:/run/php/php${VERSION}-fpm.sock|fcgi://localhost'"; \
+            echo "</FilesMatch>"
+            echo '</VirtualHost>'; \
+        } | tee ${FILENAME}
+        fi
+    fi
+}
+
 # Создание каталога и запуск виртуального хоста
 function start-virtual-host() {
-    HOST_NAME=tested.loc
+    HOST_NAME=$1
     DIR_NAME=/var/www/${HOST_NAME}
-    USER=developer
+    USER=$2
     if [[ -d ${DIR_NAME} ]]; then
         echo "Каталог ${DIR_NAME} уже существует";
     else
@@ -92,7 +132,7 @@ function start-virtual-host() {
 
 # Удаляем виртуальный хост
 function delete-virtual-host() {
-    HOST_NAME=tested.loc
+    HOST_NAME=$1
     FILENAME=/etc/apache2/sites-available/${HOST_NAME}.conf
 
     if [ -f ${FILENAME} ] ; then
@@ -100,4 +140,12 @@ function delete-virtual-host() {
     else
         echo "Фаил не существует"
     fi
+
+    service apache2 reload
+}
+
+# Включаем нужные модули apache
+function enabled_fpm_modules() {
+    a2enmod actions fcgid alias proxy_fcgi
+    service apache2 restart
 }

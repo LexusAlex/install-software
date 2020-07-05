@@ -23,6 +23,23 @@ function install_php_with_apache_7_0() {
     service apache2 restart
 }
 
+function install_php_with_apache_fpm() {
+    VERSION=$1
+    # В процессе установки нужно задать временную зону
+    apt install \
+    php${VERSION} \
+    libapache2-mod-fcgid \
+    php${VERSION}-mysql \
+    php${VERSION}-curl \
+    php${VERSION}-mbstring \
+    php${VERSION}-intl \
+    php${VERSION}-soap \
+    php${VERSION}-fpm \
+    php${VERSION}-xml -y
+    service apache2 restart
+    service php${VERSION}-fpm start
+}
+
 function remove_php_7_0() {
     apt-get purge php7.0* -y
     a2dismod php7.0
@@ -41,6 +58,22 @@ function install_php_with_apache_7_1() {
     php7.1-soap \
     php7.1-xml -y
     service apache2 restart
+}
+
+function install_php_with_apache_fpm_7_1() {
+    # В процессе установки нужно задать временную зону
+    apt install \
+    php7.1 \
+    libapache2-mod-fcgid \
+    php7.1-mysql \
+    php7.1-curl \
+    php7.1-mbstring \
+    php7.1-intl \
+    php7.1-soap \
+    php7.1-fpm \
+    php7.1-xml -y
+    service apache2 restart
+    service php7.1-fpm start
 }
 
 function remove_php_7_1() {
@@ -107,4 +140,13 @@ function remove_php_7_4() {
     apt-get purge php7.4* -y
     a2dismod php7.4
     service apache2 restart
+}
+
+# Создание файлика для проверки версии php
+function create_test_file() {
+    HOST_NAME=$1
+    FILENAME=/var/www/${HOST_NAME}/index.php
+    USER=$2
+    su ${USER} -c "touch ${FILENAME}"
+    echo "<?php phpinfo();?>" > ${FILENAME}
 }
