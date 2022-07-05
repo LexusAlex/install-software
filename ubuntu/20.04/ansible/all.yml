@@ -1,6 +1,0 @@
----
-- name: deploy
-  hosts: dev
-  roles:
-    - role: soft
-      tags: soft
