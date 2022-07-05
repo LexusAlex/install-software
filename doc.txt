@@ -2,12 +2,13 @@
 
 1. Проверяем наличие openssh сервера service sshd status
 2. Разрешаем root пользователю логинится из вне по дефолту это запрещено, правим /etc/sshd_config строку PermitRootLogin yes и ребутаем службу service sshd restart
-3. Пароль может быть не установлен
+3. Пароль может быть не установлен sudo passwd root
 4. Сразу меняем стандартный порт на 60022.
 sed -i 's/#Port 22/Port 60022/g' /etc/ssh/sshd_config
 systemctl restart ssh
+exit
 4. Добавляем ssh ключ локальной машины на сервер
-ssh-copy-id -i ~/.ssh/id_rsa.pub -p 60022 root@10.122.121.54 , где 10.122.121.54 ip сервера и вводим пароль root
+ssh-copy-id -i ~/.ssh/id_rsa.pub -p 60022 root@192.168.88.214 , где 10.122.121.54 ip сервера и вводим пароль root
 5. Проверим файлик на сервере cat /root/.ssh/authorized_keys в нем должен быть публичный ключ нашей локальной машины
 6. Если не установлен python3 возможно его нужно установить apt install python3
 7. На этом настройка машины закончена, теперь все будет делать ansible
