@@ -1,0 +1,6 @@
+apt install ufw
+ufw default deny incoming # запрет входящих соединений
+ufw default allow outgoing # разрешить исходящие соединения
+ufw allow 60022/tcp
+ufw status
+ufw enable

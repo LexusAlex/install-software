@@ -1,5 +1,5 @@
 ---
-- name: Update and upgrade
+- name: Update and upgrade packages
   block:
     - name: Update packages
       apt:

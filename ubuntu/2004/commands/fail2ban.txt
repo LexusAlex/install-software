@@ -1,0 +1,11 @@
+apt install fail2ban
+vim /etc/fail2ban/jail.local
+[DEFAULT]
+banaction = ufw
+[sshd]
+enabled = true
+maxretry = 3
+findtime = 3600
+bantime = 24h
+ignoreip = 127.0.0.1
+systemctl restart fail2ban
