@@ -1,0 +1,10 @@
+https://mirror.yandex.ru/mirrors/repo.mongodb.org/apt/ubuntu/dist/ focal/mongodb-org/5.0 multiverse
+
+curl -fsSL https://www.mongodb.org/static/pgp/server-5.0.asc | sudo apt-key add -
+deb [ arch=amd64,arm64 ] https://mirror.yandex.ru/mirrors/repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse
+
+systemctl status mongod
+systemctl enable mongod
+mongo --eval 'db.runCommand({ connectionStatus: 1 })'
+27017
+systemctl status mongod

@@ -1,0 +1,28 @@
+---
+- name: Install mongodb
+  block:
+    - name: added key asc
+      apt_key:
+        url: https://www.mongodb.org/static/pgp/server-5.0.asc
+        state: present
+      debugger: on_failed
+      tags: added-key-mongodb
+    - name: added repository
+      apt_repository:
+        repo: deb [ arch=amd64,arm64 ] https://mirror.yandex.ru/mirrors/repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse
+        update_cache: yes
+      debugger: on_failed
+      tags: added-repo-mongodb
+    - name: apt install mongodb
+      apt:
+        name: mongodb-org
+        update_cache: yes
+      debugger: on_failed
+      tags: install-mongodb-server
+    - name: start service mongodb
+      service:
+        name: mongod.service
+        state: started
+      debugger: on_failed
+      tags: start-service-mongodb
+  tags: mongodb

@@ -8,3 +8,7 @@
       tags: ufw
     - role: fail2ban
       tags: fail2ban
+    - role: mongodb
+      tags: mongodb
+    - role: pritunl
+      tags: pritunl
