@@ -40,4 +40,22 @@
         state: reloaded
       debugger: on_failed
       tags: add-ufw
+    - name: get setup key
+      command: pritunl setup-key
+      register: setup
+      debugger: on_failed
+      tags: setup-key-pritunl
+    - debug:
+        var: setup.stdout_lines
+      debugger: on_failed
+      tags: setup-key-pritunl
+    - name: get password
+      command: pritunl default-password
+      register: dp
+      debugger: on_failed
+      tags: setup-key-pritunl
+    - debug:
+        var: dp.stdout_lines
+      debugger: on_failed
+      tags: setup-key-pritunl
   tags: pritunl
