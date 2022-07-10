@@ -25,4 +25,23 @@
         state: started
       debugger: on_failed
       tags: start-service-mongodb
+    - name: enabled mondodb service
+      systemd:
+        name: mongod
+        state: started
+        enabled: yes
+      debugger: on_failed
+      tags: enabled-service-mongodb
+    - name: open port mongodb
+      ufw:
+        rule: allow
+        port: 27017
+        proto: tcp
+        state: reloaded
+      debugger: on_failed
+      tags: open-port-mongodb
+    - name: add ip address for configuration
+      shell: "sed -i 's/bindIp: 127.0.0.1/bindIp: 0.0.0.0/g' /etc/mongod.conf && systemctl restart mongod"
+      debugger: on_failed
+      tags: add-ip-config-mongo
   tags: mongodb

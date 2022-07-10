@@ -27,6 +27,12 @@
         state: reloaded
       debugger: on_failed
       tags: allow-60022-port-ufw
+    - name: allow openssh
+      ufw:
+        rule: allow
+        name: OpenSSH
+      debugger: on_failed
+      tags: allow-openssh-port-ufw
     - name: enable ufw
       ufw:
         state: enabled

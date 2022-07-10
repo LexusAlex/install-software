@@ -32,6 +32,13 @@
         name: pritunl
       debugger: on_failed
       tags: start-pritunl
+    - name: enabled pritunl
+      systemd:
+        name: pritunl
+        enabled: yes
+        state: started
+      debugger: on_failed
+      tags: enabled-pritunl
     - name: open port
       ufw:
         rule: allow
