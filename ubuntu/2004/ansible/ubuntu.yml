@@ -1,5 +1,5 @@
 ---
-- name: deploy
+- name: u2004
   hosts: ubuntu2004
   roles:
     - role: update

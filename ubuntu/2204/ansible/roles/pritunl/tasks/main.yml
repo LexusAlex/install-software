@@ -1,0 +1,68 @@
+---
+- name: Install pritunl
+  block:
+    - name: added key pritunl
+      apt_key:
+        keyserver: keyserver.ubuntu.com
+        id: 7568D9BB55FF9E5287D586017AE645C0CF8E292A
+        state: present
+      debugger: on_failed
+      tags: added-key-pritunl
+    - name: added alternative key pritunl
+      apt_key:
+        url: https://raw.githubusercontent.com/pritunl/pgp/master/pritunl_repo_pub.asc
+        state: present
+      debugger: on_failed
+      tags: added-other-key-pritunl
+    - name: add repo
+      apt_repository:
+        repo: deb http://repo.pritunl.com/stable/apt jammy main
+        update_cache: yes
+      debugger: on_failed
+      tags: add-repo-pritunl
+    - name: apt install pritunl
+      apt:
+        name: pritunl
+        update_cache: yes
+      debugger: on_failed
+      tags: apt-install-pritunl
+    - name: start pritunl
+      service:
+        state: started
+        name: pritunl
+      debugger: on_failed
+      tags: start-pritunl
+    - name: enabled pritunl
+      systemd:
+        name: pritunl
+        enabled: yes
+        state: started
+      debugger: on_failed
+      tags: enabled-pritunl
+    - name: open port
+      ufw:
+        rule: allow
+        port: 443
+        proto: tcp
+        state: reloaded
+      debugger: on_failed
+      tags: add-ufw
+    - name: get setup key
+      command: pritunl setup-key
+      register: setup
+      debugger: on_failed
+      tags: setup-key-pritunl
+    - debug:
+        var: setup.stdout_lines
+      debugger: on_failed
+      tags: setup-key-pritunl
+    - name: get password
+      command: pritunl default-password
+      register: dp
+      debugger: on_failed
+      tags: setup-key-pritunl
+    - debug:
+        var: dp.stdout_lines
+      debugger: on_failed
+      tags: setup-key-pritunl
+  tags: pritunl

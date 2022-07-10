@@ -1,0 +1,10 @@
+---
+- name: u2204
+  hosts: ubuntu2204
+  roles:
+    - role: update
+      tags: update
+    - role: ufw
+      tags: ufw
+    - role: fail2ban
+      tags: fail2ban
