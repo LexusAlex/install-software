@@ -9,7 +9,6 @@
 Поддерживаемые OC
 
 1. Ubuntu 20.04
-2. Ubuntu 22.04
 
 Первоначальная настройка ubuntu:
 
@@ -19,3 +18,7 @@
 4. sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config && sed -i 's/#Port 22/Port 60022/g' /etc/ssh/sshd_config && systemctl restart ssh
 5. ssh-copy-id -i ~/.ssh/id_rsa.pub -p 60022 root@192.168.88.161
 6. Далее все делает ansible
+
+Файлы, которые нужно создать руками
+1. ubuntu/ansible/inventory.ini
+2. ubuntu/2004/ansible/roles/mysql-settings/vars/main.yml

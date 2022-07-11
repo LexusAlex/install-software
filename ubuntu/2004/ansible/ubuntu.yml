@@ -12,3 +12,12 @@
       tags: mongodb
     - role: pritunl
       tags: pritunl
+    - role: mysql
+      tags: mysql
+    - role: mysql-settings
+      tags: mysql-settings
+- name: myserver
+  hosts: myserver
+  roles:
+    - role: update
+      tags: update
