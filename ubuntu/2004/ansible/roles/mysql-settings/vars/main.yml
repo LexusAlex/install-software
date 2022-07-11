@@ -1,5 +1,0 @@
----
-mysql_root_password: "12345"
-mysql_application_user: "starter"
-mysql_application_password: "54321"
-mysql_application_db: "rtyrty"
