@@ -1,1 +1,2 @@
 ubuntu/ansible/inventory.ini
+ubuntu/2004/ansible/roles/mysql-settings/vars/*
