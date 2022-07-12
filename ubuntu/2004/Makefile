@@ -7,4 +7,4 @@ ansible-reboot-ubuntu2004:
 	ansible -m shell -a "reboot" ubuntu2004 -i $(INVENTORY_FILE_UBUNTU) -u root
 ansible-ubuntu2004:
 	#ansible-playbook -i ubuntu/ansible/inventory.ini ubuntu/2004/ansible/ubuntu.yml -l ubuntu2004 -u root -t update
-	ansible-playbook -i $(INVENTORY_FILE_UBUNTU) ubuntu/2004/ansible/ubuntu.yml -l ubuntu2004 -u root -t mysql-settings
+	ansible-playbook -i $(INVENTORY_FILE_UBUNTU) ubuntu/2004/ansible/ubuntu.yml -l ubuntu2004 -u root -t mysql-set-password-root
