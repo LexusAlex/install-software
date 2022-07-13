@@ -16,8 +16,8 @@
       tags: mysql
     - role: mysql-settings
       tags: mysql-settings
-    - tags: mysql-create-user
-      role: mysql-create-user
+    - tags: mysql-add-data
+      role: mysql-add-data
 - name: myserver
   hosts: myserver
   roles:
