@@ -8,8 +8,8 @@
         host: 'localhost'
         priv:
           #'{{ mysql_application_db }}.*:ALL,GRANT'
-          #'*.*:USAGE'
-          '*.*:ALL,GRANT'
+          '*.*:USAGE'
+          #'*.*:ALL,GRANT'
         state: present
       no_log: true
       debugger: on_failed
