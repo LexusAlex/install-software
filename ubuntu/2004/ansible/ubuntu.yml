@@ -14,12 +14,16 @@
       tags: pritunl
     - role: mysql
       tags: mysql
-    - role: mysql-settings
-      tags: mysql-settings
-    - tags: mysql-add-data
-      role: mysql-add-data
 - name: myserver
   hosts: myserver
   roles:
     - role: update
       tags: update
+    - role: ufw
+      tags: ufw
+    - role: fail2ban
+      tags: fail2ban
+    - role: mysql
+      tags: mysql
+    - role: mysql-settings
+      tags: mysql-settings

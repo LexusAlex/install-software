@@ -33,13 +33,14 @@
         state: absent
       debugger: on_failed
       tags: mysql-remove-test-db
-    - name: Prohibit Remote Root login
-      community.mysql.mysql_query:
-        login_db: mysql
-        query: "{{ item }}"
-      with_items:
-        - DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
-        - FLUSH PRIVILEGES;
-      debugger: on_failed
-      tags: mysql-prohibit-root
+
+  #  - name: Prohibit Remote Root login
+  #    community.mysql.mysql_query:
+  #      login_db: mysql
+  #      query: "{{ item }}"
+  #    with_items:
+  #      - DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1');
+  #      - FLUSH PRIVILEGES;
+  #    debugger: on_failed
+  #    tags: mysql-prohibit-root
   tags: mysql-settings

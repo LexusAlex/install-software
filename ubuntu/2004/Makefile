@@ -1,10 +1,10 @@
 ## Ansible
-ansible-ping-ubuntu2004:
-	ansible ubuntu2004 -i $(INVENTORY_FILE_UBUNTU) -u root -m ping
+ansible-ping-myserver:
+	ansible myserver -i $(INVENTORY_FILE_UBUNTU) -u root -m ping
 ansible-poweroff-ubuntu2004:
 	ansible -m shell -a "init 0" ubuntu2004 -i $(INVENTORY_FILE_UBUNTU) -u root
 ansible-reboot-ubuntu2004:
 	ansible -m shell -a "reboot" ubuntu2004 -i $(INVENTORY_FILE_UBUNTU) -u root
-ansible-ubuntu2004:
+ansible-myserver:
 	#ansible-playbook -i ubuntu/ansible/inventory.ini ubuntu/2004/ansible/ubuntu.yml -l ubuntu2004 -u root -t update
-	ansible-playbook -i $(INVENTORY_FILE_UBUNTU) ubuntu/2004/ansible/ubuntu.yml -l ubuntu2004 -u root -t mysql-add-data
+	ansible-playbook -i $(INVENTORY_FILE_UBUNTU) ubuntu/2004/ansible/ubuntu.yml -l myserver -u root -t mysql-settings

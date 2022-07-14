@@ -2,3 +2,10 @@ deb http://repo.mysql.com/apt/ubuntu/ focal mysql-8.0 main
 
 Если в домашний каталог пользователя добавлен файл конфигурации .my.cnf тогда учетные данные берутся оттуда
 и пользователь сможет заходить без указания пароля
+
+Список всех пользователей
+
+SELECT User, Host,plugin,authentication_string FROM mysql.user;
+
+Просмотр всех прав
+SHOW GRANTS FOR 'root'@'localhost';
