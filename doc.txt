@@ -12,3 +12,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub -p 60022 root@192.168.88.214 , где 10.122.12
 5. Проверим файлик на сервере cat /root/.ssh/authorized_keys в нем должен быть публичный ключ нашей локальной машины
 6. Если не установлен python3 возможно его нужно установить apt install python3
 7. На этом настройка машины закончена, теперь все будет делать ansible
+
+Установка postgres
+https://stribny.name/blog/ansible-postgresql/
+https://www.postgresql.org/download/linux/ubuntu/
