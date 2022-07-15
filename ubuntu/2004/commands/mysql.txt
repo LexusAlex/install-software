@@ -4,8 +4,25 @@ deb http://repo.mysql.com/apt/ubuntu/ focal mysql-8.0 main
 и пользователь сможет заходить без указания пароля
 
 Список всех пользователей
-
 SELECT User, Host,plugin,authentication_string FROM mysql.user;
+Создать нового пользователя
+CREATE USER 'oneuser'@'localhost' IDENTIFIED BY 'password';
+Создать базу
+CREATE DATABASE db_test;
+Добавить прав
+GRANT ALL PRIVILEGES ON `db_test`.* TO 'oneuser'@'%';
+Убрать права
+REVOKE CREATE ON *.* FROM 'oneuser'@'localhost';
+REVOKE ALL PRIVILEGES, GRANT OPTION FROM 'oneuser'@'localhost';
+Перезагрузить привелегии
+FLUSH PRIVILEGES;
+Удалить пользователя
+DROP USER 'oneuser'@'localhost';
+
+
 
 Просмотр всех прав
-SHOW GRANTS FOR 'root'@'localhost';
+SHOW GRANTS FOR 'oneuser'@'localhost';
+
+GRANT USAGE ON *.* TO `myuser12434`@`localhost`                      |
+GRANT ALL PRIVILEGES ON `myprojectdb`.* TO `myuser12434`@`%`

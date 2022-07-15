@@ -5,13 +5,12 @@
       mysql_user:
         name: '{{ mysql_application_user }}'
         password: '{{ mysql_application_password }}'
-        host: 'localhost'
+        host: '%' # Разрешаем подключаться со всех хостов
         priv:
-          #'{{ mysql_application_db }}.*:ALL,GRANT'
-          '*.*:USAGE'
+          '{{ mysql_application_db }}.*:ALL'
+          #'*.*:USAGE'
           #'*.*:ALL,GRANT'
         state: present
-      no_log: true
       debugger: on_failed
       tags: add-application-mysql-user
     - name: add db for mysql
@@ -23,4 +22,20 @@
       no_log: true
       debugger: on_failed
       tags: add-db-mysql
+  #  - name: add grant all hosts
+  #    community.mysql.mysql_query:
+  #      query: "{{ item }}"
+  #    with_items:
+  #      - GRANT ALL PRIVILEGES ON `{{ mysql_application_db }}`.* TO `{{ mysql_application_user }}`@`%`
+  #      - FLUSH PRIVILEGES;
+  #    debugger: on_failed
+  #    tags: add-grant-all-hosts
+    - name: open port
+      ufw:
+        rule: allow
+        port: 3306
+        proto: tcp
+        state: reloaded
+      debugger: on_failed
+      tags: add-mysql-port
   tags: mysql-add-data

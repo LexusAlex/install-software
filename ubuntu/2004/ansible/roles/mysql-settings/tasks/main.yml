@@ -33,7 +33,15 @@
         state: absent
       debugger: on_failed
       tags: mysql-remove-test-db
-
+    - name: remove remote
+      lineinfile:
+        dest: /etc/mysql/mysql.conf.d/mysqld.cnf
+        line: "bind-address   = 0.0.0.0" # Доступ для всех хостов
+        insertbefore: "log-error       = /var/log/mysql/error.log"
+    - name: reload mysql
+      service:
+        name: mysql
+        state: restarted
   #  - name: Prohibit Remote Root login
   #    community.mysql.mysql_query:
   #      login_db: mysql

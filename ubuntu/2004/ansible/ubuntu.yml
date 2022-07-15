@@ -27,3 +27,5 @@
       tags: mysql
     - role: mysql-settings
       tags: mysql-settings
+    - role: mysql-add-data
+      tags: mysql-add-data
