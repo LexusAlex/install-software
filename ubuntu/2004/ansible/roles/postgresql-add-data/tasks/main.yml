@@ -1,0 +1,67 @@
+---
+- name: add and settings new data server
+  block:
+      - name: Create database postgresql
+        postgresql_db:
+            state: present
+            name: '{{ pg_application_db }}'
+        become: yes
+        become_user: postgres
+        debugger: on_failed
+        tags: create-database-postgres
+      - name: Create db user
+        postgresql_user:
+            state: present
+            name: '{{ pg_application_user }}'
+            password: '{{ pg_application_password }}'
+        become: yes
+        become_user: postgres
+        debugger: on_failed
+        tags: create-user-application
+      - name: Grant db user to db
+        postgresql_privs:
+            type: database
+            database: '{{ pg_application_db }}'
+            roles: '{{ pg_application_user }}'
+            grant_option: no
+            privs: all
+        become: yes
+        become_user: postgres
+        debugger: on_failed
+        tags: add-grant-options
+      - name: Allow md5 connection for db user
+        postgresql_pg_hba:
+            dest: "/etc/postgresql/14/main/pg_hba.conf"
+            contype: host
+            databases: "{{ pg_application_db }}"
+            method: md5
+            source: all
+            users: '{{ pg_application_user }}'
+        become: yes
+        become_user: postgres
+        debugger: on_failed
+        tags: allow-md5-connections
+      - name: added remove connections
+        lineinfile:
+            dest: "/etc/postgresql/14/main/postgresql.conf"
+            regexp: "^listen_addresses = 'localhost'         # what IP address(es) to listen on;"
+            insertafter: "^#listen_addresses = 'localhost'         # what IP address(es) to listen on;"
+            line: "listen_addresses = '*'         # what IP address(es) to listen on;"
+            state: present
+        debugger: on_failed
+        tags: added-remove-connections
+      - name: Restart postgresql
+        service:
+            name: postgresql
+            state: restarted
+        debugger: on_failed
+        tags: restart-postgresql
+      - name: open port pg
+        ufw:
+            rule: allow
+            port: 5432
+            proto: tcp
+            state: reloaded
+        debugger: on_failed
+        tags: open-port-pg
+  tags: postgresql-add-data

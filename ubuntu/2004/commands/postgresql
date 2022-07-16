@@ -1,0 +1,12 @@
+Установка postgres
+https://stribny.name/blog/ansible-postgresql/
+https://www.postgresql.org/download/linux/ubuntu/
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-18-04-ru
+
+Актуальная версия 14 на текущий момент
+deb http://apt.postgresql.org/pub/repos/apt focal-pgdg main
+
+\l+ список баз данных c информацией о них
+\du список пользователей
+
+/etc/postgresql/14/main/postgresql.conf

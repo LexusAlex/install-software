@@ -5,7 +5,7 @@
       mysql_user:
         name: '{{ mysql_application_user }}'
         password: '{{ mysql_application_password }}'
-        host: '%' # Разрешаем подключаться со всех хостов
+        host: '%' # Разрешаем подключаться со всех хостов или localhost
         priv:
           '{{ mysql_application_db }}.*:ALL'
           #'*.*:USAGE'

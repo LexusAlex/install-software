@@ -1,0 +1,10 @@
+---
+- name: Settings and manage
+  block:
+      - name: Install dependencies
+        apt:
+            name: python3-psycopg2
+            state: present
+        debugger: on_failed
+        tags: install-postgres-dep
+  tags: postgresql-settings

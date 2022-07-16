@@ -1,3 +1,4 @@
 ubuntu/ansible/inventory.ini
 ubuntu/2004/ansible/roles/mysql-settings/vars/*
 ubuntu/2004/ansible/roles/mysql-add-data/vars/*
+ubuntu/2004/ansible/roles/postgresql-add-data/vars/*

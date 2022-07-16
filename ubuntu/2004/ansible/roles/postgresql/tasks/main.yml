@@ -1,0 +1,22 @@
+---
+- name: Install postgresql
+  block:
+      - name: added key for postgresql
+        apt_key:
+            url: https://www.postgresql.org/media/keys/ACCC4CF8.asc
+            state: present
+        debugger: on_failed
+        tags: add-pg-key
+      - name: add repo for postgresql
+        apt_repository:
+            repo: deb http://apt.postgresql.org/pub/repos/apt focal-pgdg main
+            update_cache: yes
+        debugger: on_failed
+        tags: add-repo-pg
+      - name: install server pg
+        apt:
+            name: postgresql
+            update_cache: yes
+        debugger: on_failed
+        tags: install-server-pg
+  tags: postgresql

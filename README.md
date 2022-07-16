@@ -25,3 +25,8 @@
 1. ubuntu/ansible/inventory.ini
 2. ubuntu/2004/ansible/roles/mysql-settings/vars/main.yml
 3. ubuntu/2004/ansible/roles/mysql-create-user/vars/main.yml
+
+Актуальные версии ПО
+
+1. [Ubuntu](https://en.wikipedia.org/wiki/Ubuntu_version_history)
+2. 
