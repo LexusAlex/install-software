@@ -18,3 +18,8 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub -p 60022 root@192.168.88.214 , где 10.122.12
 Что установить
 
 nodejs
+настройка mongodb
+php
+php-fpm
+nginx
+apache
