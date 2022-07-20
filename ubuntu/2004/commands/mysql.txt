@@ -26,3 +26,11 @@ SHOW GRANTS FOR 'oneuser'@'localhost';
 
 GRANT USAGE ON *.* TO `myuser12434`@`localhost`                      |
 GRANT ALL PRIVILEGES ON `myprojectdb`.* TO `myuser12434`@`%`
+
+
+Переменные
+
+mysql_root_password: ""
+mysql_application_user: ""
+mysql_application_password: ""
+mysql_application_db: ""

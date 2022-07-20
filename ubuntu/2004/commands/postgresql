@@ -10,3 +10,9 @@ deb http://apt.postgresql.org/pub/repos/apt focal-pgdg main
 \du список пользователей
 
 /etc/postgresql/14/main/postgresql.conf
+
+
+Переменные
+pg_application_user: ""
+pg_application_password: ""
+pg_application_db: ""
