@@ -1,1 +1,14 @@
 ---
+- name: Install node js latest version
+  block:
+    - name: load nodejs
+      shell: 'curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -'
+      debugger: on_failed
+      tags: load-nodejs
+    - name: install nodejs
+      apt:
+        name: nodejs
+        update_cache: yes
+      tags: install-nodejs
+      debugger: on_failed
+  tags: nodejs

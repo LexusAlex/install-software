@@ -35,3 +35,5 @@
       tags: postgresql-settings
     - role: postgresql-add-data
       tags: postgresql-add-data
+    - role: nodejs
+      tags: nodejs
