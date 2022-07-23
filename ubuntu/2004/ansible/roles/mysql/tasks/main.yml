@@ -9,7 +9,7 @@
       tags: added-mysql-key
     - name: add repo mysql
       apt_repository:
-        repo: deb http://repo.mysql.com/apt/ubuntu/ focal mysql-8.0 main
+        repo: deb [ arch=amd64 ] http://repo.mysql.com/apt/ubuntu/ focal mysql-8.0
         update_cache: yes
       debugger: on_failed
       tags: add-repo-mysql

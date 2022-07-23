@@ -37,3 +37,5 @@
       tags: postgresql-add-data
     - role: nodejs
       tags: nodejs
+    - role: mongodb
+      tags: mongodb

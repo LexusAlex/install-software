@@ -9,7 +9,7 @@
       tags: added-key-mongodb
     - name: added repository
       apt_repository:
-        repo: deb [ arch=amd64,arm64 ] https://mirror.yandex.ru/mirrors/repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse
+        repo: deb [ arch=amd64 ] https://mirror.yandex.ru/mirrors/repo.mongodb.org/apt/ubuntu focal/mongodb-org/5.0 multiverse
         update_cache: yes
       debugger: on_failed
       tags: added-repo-mongodb
