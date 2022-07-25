@@ -64,4 +64,8 @@
         state: reloaded
       debugger: on_failed
       tags: nginx-open-port
+    - name: change user nginx
+      shell: "sed -i 's/user  nginx;/user  www-data;/g' /etc/nginx/nginx.conf && service nginx reload"
+      debugger: on_failed
+      tags: nginx-change-user
   tags: nginx
