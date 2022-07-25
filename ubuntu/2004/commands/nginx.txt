@@ -1,0 +1,6 @@
+https://nginx.org/ru/linux_packages.html#Ubuntu
+
+Проверка ключа
+
+gpg --dry-run --quiet --import --import-options import-show /usr/share/keyrings/nginx-archive-keyring.gpg
+ключ должен быть такой 573BFD6B3D8FBC641079A6ABABF5BD827BD9BF62
