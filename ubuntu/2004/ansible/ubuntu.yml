@@ -39,5 +39,7 @@
       tags: nodejs
     - role: mongodb
       tags: mongodb
+    - role: php
+      tags: php
     - role: nginx
       tags: nginx

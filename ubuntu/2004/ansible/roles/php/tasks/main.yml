@@ -1,0 +1,14 @@
+---
+- name: install php
+  block:
+    - name: install soft
+      apt:
+        name: software-properties-common
+        state: present
+        update_cache: yes
+      debugger: on_failed
+      tags: php-install-software
+    - name: added repository
+      apt_repository:
+        repo:
+  tags: php
