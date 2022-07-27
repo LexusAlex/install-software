@@ -10,5 +10,18 @@
       tags: php-install-software
     - name: added repository
       apt_repository:
-        repo:
+        repo: 'ppa:ondrej/php'
+        state: present
+        update_cache: yes
+      debugger: on_failed
+      tags: php-add-repository
+    - name: install php packages
+      apt:
+         name: "{{ packages }}"
+         state: latest
+      vars:
+         packages:
+           - "php{{ php_version }}-cli"
+      debugger: on_failed
+      tags: php-install-version
   tags: php
