@@ -4,7 +4,7 @@ server {
     charset utf-8;
     index index.php;
     server_tokens off;
-    root  /var/www/starter/public;
+    root  {{ path }}
 
     add_header 'Access-Control-Allow-Origin' '*' always;
     add_header 'Access-Control-Allow-Credentials' 'true' always;
