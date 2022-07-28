@@ -22,6 +22,11 @@
       vars:
          packages:
            - "php{{ php_version }}-cli"
+           - "php{{ php_version }}-fpm"
       debugger: on_failed
       tags: php-install-version
+    - name: start php-fpm
+      service:
+        name: php8.1-fpm
+        state: restarted
   tags: php
