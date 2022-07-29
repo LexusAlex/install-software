@@ -1,0 +1,10 @@
+---
+- name: user management
+  block:
+    - name: create project user
+      user:
+        name: "{{ user_name }}"
+        shell: /bin/bash
+      debugger: on_failed
+      tags: create-project-user
+  tags: user

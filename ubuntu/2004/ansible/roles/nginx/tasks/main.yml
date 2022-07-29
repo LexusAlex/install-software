@@ -59,7 +59,7 @@
     - name: open port
       ufw:
         rule: allow
-        port: 80
+        port: 8080
         proto: tcp
         state: reloaded
       debugger: on_failed

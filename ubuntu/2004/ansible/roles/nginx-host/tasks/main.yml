@@ -3,7 +3,7 @@
   block:
     - name: added virtual host file
       template:
-        src: php/default.conf.j2
+        src: "{{ config }}"
         dest: /etc/nginx/conf.d/default.conf
       debugger: on_failed
       tags: add-virtual-host

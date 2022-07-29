@@ -7,4 +7,4 @@ ansible-reboot-myserver:
 	ansible -m shell -a "reboot" myserver -i $(INVENTORY_FILE_UBUNTU) -u root
 ansible-myserver:
 	#ansible-playbook -i ubuntu/ansible/inventory.ini ubuntu/2004/ansible/ubuntu.yml -l ubuntu2004 -u root -t update
-	ansible-playbook -i $(INVENTORY_FILE_UBUNTU) ubuntu/2004/ansible/ubuntu.yml -l myserver -u root -t nginx-host
+	ansible-playbook -i $(INVENTORY_FILE_UBUNTU) ubuntu/2004/ansible/ubuntu.yml -l myserver -u root -t user -t project -t nginx-host

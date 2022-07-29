@@ -1,0 +1,21 @@
+---
+- name: settings for project
+  block:
+    - name: create main directory
+      file:
+        path: "/var/www"
+        state: directory
+        owner: "www-data"
+        group: "www-data"
+        recurse: yes
+      debugger: on_failed
+      tags: create main dir
+    - name: create directory project
+      file:
+        path: "{{ dir }}"
+        state: directory
+        owner: "{{ user }}"
+        recurse: yes
+      debugger: on_failed
+      tags: create directory
+  tags: project

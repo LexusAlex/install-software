@@ -41,6 +41,10 @@
       tags: mongodb
     - role: php
       tags: php
+    - role: user
+      tags: user
+    - role: project
+      tags: project
     - role: nginx
       tags: nginx
     - role: nginx-host
