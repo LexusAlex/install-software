@@ -41,6 +41,8 @@
       tags: mongodb
     - role: php
       tags: php
+    - role: composer
+      tags: composer
     - role: user
       tags: user
     - role: project
