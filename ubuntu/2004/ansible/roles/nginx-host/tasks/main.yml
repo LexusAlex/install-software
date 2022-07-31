@@ -5,6 +5,7 @@
       template:
         src: "{{ config }}"
         dest: /etc/nginx/conf.d/default.conf
+        mode: "0600"
       debugger: on_failed
       tags: add-virtual-host
     - name: reboot nginx

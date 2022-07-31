@@ -23,3 +23,14 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub -p 60022 root@192.168.88.214 , где 10.122.12
 
 redis
 apache
+
+переменные среды
+
+
+
+- name: Set JAVA_HOME
+  lineinfile:
+    dest: /etc/environment
+    state: present
+    regexp: '^JAVA_HOME'
+    line: 'JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk'
