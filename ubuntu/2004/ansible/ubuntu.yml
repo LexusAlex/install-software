@@ -51,3 +51,5 @@
       tags: nginx
     - role: nginx-host
       tags: nginx-host
+    - role: zabbix-agent
+      tags: zabbix-agent

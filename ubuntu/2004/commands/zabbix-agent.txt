@@ -1,0 +1,2 @@
+https://linuxopsys.com/topics/install-zabbix-agent-on-ubuntu
+https://www.zabbix.com/download

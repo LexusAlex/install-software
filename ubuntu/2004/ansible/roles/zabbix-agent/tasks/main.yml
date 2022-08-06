@@ -1,0 +1,33 @@
+---
+- name: Install zabbix-agent
+  block:
+    - name: download deb file
+      shell: 'wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-3+ubuntu20.04_all.deb'
+      debugger: on_failed
+      tags: download-zabbix
+    - name: install deb package
+      apt:
+        deb: ~/zabbix-release_6.0-3+ubuntu20.04_all.deb
+        state: present
+        update_cache: yes
+      debugger: on_failed
+      tags: install-deb
+    - name: install zabbix-agent
+      apt:
+        name: zabbix-agent
+        update_cache: yes
+      debugger: on_failed
+      tags: install-za
+    - name: added ip zabbix-server
+      shell: "sed -i 's/Server=127.0.0.1/Server={{ zabbix_server_ip }}/g' /etc/zabbix/zabbix_agentd.conf && systemctl restart zabbix-agent"
+      debugger: on_failed
+      tags: change-zabbix-server-ip
+    - name: allow zabbix server ufw
+      ufw: # Здесь можно открыть только порт 10050
+        rule: allow
+        from_ip: "{{ zabbix_server_ip }}"
+        proto: tcp
+        state: reloaded
+      debugger: on_failed
+      tags: allow-ufw-zabbix-server
+  tags: zabbix-agent
