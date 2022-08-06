@@ -18,8 +18,10 @@
 4. su root
 5. sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config && sed -i 's/#Port 22/Port 60022/g' /etc/ssh/sshd_config && systemctl restart ssh
 6. exit
-7. ssh-copy-id -i ~/.ssh/id_rsa.pub -p 60022 root@10.122.121.34
+7. ssh-copy-id -i ~/.ssh/id_rsa.pub -p 60022 root@192.168.88.155
 8. Далее все делает ansible
+
+ssh -p 60022 root@192.168.88.155
 
 Файлы, которые нужно создать руками
 1. ubuntu/ansible/inventory.ini
