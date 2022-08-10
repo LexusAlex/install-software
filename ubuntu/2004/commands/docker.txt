@@ -1,0 +1,4 @@
+Устанавливаем docker
+https://github.com/deworkerpro/demo-auction-registry/blob/master/provisioning/roles/docker/tasks/main.yml
+
+https://docs.docker.com/engine/install/ubuntu/

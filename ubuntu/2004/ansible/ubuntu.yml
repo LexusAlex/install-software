@@ -53,3 +53,5 @@
       tags: nginx-host
     - role: zabbix-agent
       tags: zabbix-agent
+    - role: docker
+      tags: docker
