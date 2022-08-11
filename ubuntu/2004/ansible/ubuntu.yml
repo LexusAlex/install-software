@@ -55,3 +55,5 @@
       tags: zabbix-agent
     - role: docker
       tags: docker
+    - role: docker-compose
+      tags: docker-compose

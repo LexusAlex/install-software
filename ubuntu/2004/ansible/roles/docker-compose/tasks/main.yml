@@ -1,0 +1,10 @@
+---
+- name: Install docker-compose
+  block:
+    - name: Install docker-compose plugin
+      apt:
+        name: docker-compose-plugin
+        state: present
+        update_cache: yes
+      tags: Install package
+  tags: docker-compose
